@@ -1,0 +1,4 @@
+# Alternativa de despliegue: Netlify (conecta el repositorio y usa estos valores)
+[build]
+  command = "npm run build"
+  publish = "dist/nexo360-angular/browser"
