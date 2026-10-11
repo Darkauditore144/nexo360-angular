@@ -1,0 +1,24 @@
+<svg [attr.width]="tamano()" [attr.height]="tamano()" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  @switch (nombre()) {
+    @case ('corazon') {
+      <path d="M12 21s-7.5-4.6-9.5-9.1C1.1 8.6 3 5 6.4 5c2 0 3.6 1.1 4.6 2.7h2C14 6.1 15.600 5 17.600 5 21 5 22.900 8.600 21.500 11.900 19.500 16.400 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+    }
+    @case ('editar') {
+      <path d="M4 20h4L19 9l-4-4L4 16v4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+    }
+    @case ('borrar') {
+      <path d="M5 7h14M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    }
+    @case ('buscar') {
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    }
+    @case ('campana') {
+      <path d="M6 17V11a6 6 0 1112 0v6l2 2H4l2-2zM10 21h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+    }
+    @case ('usuario') {
+      <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M4 21c1-4 4-6 8-6s7 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    }
+  }
+</svg>

@@ -1,0 +1,67 @@
+<div class="container layout">
+  @if (noticias.cargando()) {
+    <p class="empty" role="status">Cargando noticia…</p>
+  } @else if (noticia(); as n) {
+    <article class="article">
+      <span class="tag" [class]="'tag-' + categoria()!.color">{{ categoria()!.nombre }}</span>
+      <h1 class="article-title">{{ n.titulo }}</h1>
+
+      <div class="article-meta">
+        <span class="avatar" [class]="'avatar-' + categoria()!.color" aria-hidden="true">{{ n.autor.nombre | iniciales }}</span>
+        <div><strong>{{ n.autor.nombre }}</strong><span>{{ n.autor.cargo }}</span></div>
+        <div class="ms-auto text-end">
+          <time [attr.datetime]="n.fecha">{{ n.fecha | date: 'd \'de\' MMMM \'de\' y' }}</time>
+          <span class="read-time">Tiempo de lectura: {{ n.lectura }} min</span>
+        </div>
+      </div>
+
+      @if (n.imagen) {
+        <figure class="article-fig"><img [src]="n.imagen" [alt]="n.alt || n.titulo" /></figure>
+      }
+
+      <!-- Cada bloque del JSON se dibuja según su tipo con @switch -->
+      <div class="article-body">
+        @for (b of n.contenido; track $index) {
+          @switch (b.tipo) {
+            @case ('h2') { <h2>{{ b.texto }}</h2> }
+            @case ('cita') {
+              <blockquote class="quote" [class]="'quote-' + categoria()!.color">
+                <p>“{{ b.texto }}”</p>
+                @if (b.tipo === 'cita') { <cite>{{ b.fuente }}</cite> }
+              </blockquote>
+            }
+            @default { <p>{{ b.texto }}</p> }
+          }
+        }
+      </div>
+
+      <div class="article-actions">
+        <button type="button" class="btn-nexo" [class.is-saved]="esFavorita()" [attr.aria-pressed]="esFavorita()" (click)="alternarFavorito()">
+          {{ esFavorita() ? '♥ Guardado en favoritos' : '♡ Guardar en favoritos' }}
+        </button>
+        <button type="button" class="btn-nexo btn-outline" (click)="volver()">← Volver</button>
+        <a class="btn-nexo btn-outline" routerLink="/contacto">Contactar a la redacción</a>
+      </div>
+
+      <div class="share">
+        <span>Compartir este artículo:</span>
+        <a class="share-fb" target="_blank" rel="noopener" [href]="'https://www.facebook.com/sharer/sharer.php?u=' + urlActual">Facebook</a>
+        <a class="share-x" target="_blank" rel="noopener" [href]="'https://twitter.com/intent/tweet?url=' + urlActual">X (Twitter)</a>
+        <a class="share-in" target="_blank" rel="noopener" [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + urlActual">LinkedIn</a>
+      </div>
+    </article>
+
+    @if (relacionadas().length) {
+      <section class="related article" aria-label="Noticias relacionadas">
+        <h2 class="side-title">Relacionadas</h2>
+        <div class="row g-3">
+          @for (r of relacionadas(); track r.id) {
+            <div class="col-md-6"><app-noticia-card [noticia]="r" /></div>
+          }
+        </div>
+      </section>
+    }
+  } @else {
+    <p class="empty">No encontramos esta noticia. Puede haber sido eliminada. <a routerLink="/noticias">Volver al listado</a></p>
+  }
+</div>

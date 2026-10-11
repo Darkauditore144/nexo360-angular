@@ -1,0 +1,9 @@
+<dialog #dlg class="modal-nexo" [attr.aria-labelledby]="idTitulo" (cancel)="alCancelar($event)" (click)="alHacerClic($event)">
+  <div class="modal-head">
+    <h2 [id]="idTitulo">{{ titulo() }}</h2>
+    <button type="button" class="modal-x" aria-label="Cerrar ventana" (click)="cerrar.emit()">×</button>
+  </div>
+  <div class="modal-body">
+    <ng-content />
+  </div>
+</dialog>

@@ -1,0 +1,69 @@
+<div class="container layout">
+  <div class="page-head">
+    <h1>Noticias</h1>
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <span class="pill-count" aria-live="polite">{{ resultados().length }} {{ resultados().length === 1 ? 'noticia' : 'noticias' }}</span>
+      <button class="btn-nexo" type="button" (click)="creando.set(true)">+ Publicar noticia</button>
+    </div>
+  </div>
+
+  <!-- Filtros por categoría: [class.active] y [attr.aria-pressed] dependen de la signal `categoria` -->
+  <div class="chips" role="group" aria-label="Filtrar por categoría">
+    <button type="button" [class.active]="categoria() === 'todas'" [attr.aria-pressed]="categoria() === 'todas'" (click)="categoria.set('todas')">Todas</button>
+    @for (c of categorias; track c.id) {
+      <button type="button" [class.active]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id)">{{ c.nombre }}</button>
+    }
+  </div>
+
+  <div class="toolbar">
+    <label class="visually-hidden" for="filtro-q">Filtrar noticias por texto</label>
+    <input id="filtro-q" class="grow" type="search" placeholder="Filtrar por título, resumen o autor…" [(ngModel)]="texto" />
+    <label class="visually-hidden" for="orden">Ordenar por</label>
+    <select id="orden" [ngModel]="orden()" (ngModelChange)="orden.set($event)">
+      <option value="recientes">Más recientes</option>
+      <option value="antiguas">Más antiguas</option>
+      <option value="vistas">Más vistas</option>
+    </select>
+    <button class="link-btn" type="button" (click)="restablecer()">Restablecer datos originales</button>
+  </div>
+
+  @if (noticias.cargando()) {
+    <p class="empty" role="status">Cargando noticias…</p>
+  } @else {
+    <section class="row g-3" aria-label="Listado de noticias">
+      @for (n of resultados(); track n.id) {
+        <div class="col-md-6">
+          <!-- Entrada [noticia] y salidas (editar)/(eliminar) del componente hijo -->
+          <app-noticia-card [noticia]="n" [gestion]="true" (editar)="editando.set($event)" (eliminar)="porEliminar.set($event)" />
+        </div>
+      } @empty {
+        <div class="col-12">
+          <p class="empty">No encontramos noticias con esos filtros. <a routerLink="/noticias">Ver todas</a></p>
+        </div>
+      }
+    </section>
+  }
+</div>
+
+<!-- Diálogos (se crean solo cuando hacen falta) -->
+@if (creando()) {
+  <app-modal titulo="Publicar noticia" (cerrar)="creando.set(false)">
+    <app-noticia-form (guardado)="guardarNueva($event)" (cancelado)="creando.set(false)" />
+  </app-modal>
+}
+
+@if (editando(); as n) {
+  <app-modal titulo="Editar noticia" (cerrar)="editando.set(null)">
+    <app-noticia-form [noticia]="n" (guardado)="guardarEdicion($event)" (cancelado)="editando.set(null)" />
+  </app-modal>
+}
+
+@if (porEliminar(); as n) {
+  <app-modal titulo="Eliminar noticia" (cerrar)="porEliminar.set(null)">
+    <p>¿Seguro que quieres eliminar <strong>{{ n.titulo }}</strong>? Podrás restablecer los datos originales cuando quieras.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn-nexo btn-outline" (click)="porEliminar.set(null)">Cancelar</button>
+      <button type="button" class="btn-nexo btn-danger" (click)="confirmarEliminar()">Eliminar</button>
+    </div>
+  </app-modal>
+}

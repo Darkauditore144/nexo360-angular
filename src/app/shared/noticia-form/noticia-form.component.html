@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+  <div class="mb-2">
+    <label class="form-label" for="n-titulo">Titular</label>
+    <input id="n-titulo" class="form-control" formControlName="titulo" maxlength="140"
+           [class.is-invalid]="error('titulo')" [attr.aria-invalid]="!!error('titulo')" aria-describedby="n-titulo-error" />
+    <div class="invalid-feedback" id="n-titulo-error" aria-live="polite">{{ error('titulo') }}</div>
+  </div>
+
+  <div class="row g-2">
+    <div class="col-sm-6 mb-2">
+      <label class="form-label" for="n-categoria">Categoría</label>
+      <select id="n-categoria" class="form-select" formControlName="categoria"
+              [class.is-invalid]="error('categoria')" aria-describedby="n-categoria-error">
+        <option value="">Selecciona…</option>
+        @for (c of categorias; track c.id) {
+          <option [value]="c.id">{{ c.nombre }}</option>
+        }
+      </select>
+      <div class="invalid-feedback" id="n-categoria-error" aria-live="polite">{{ error('categoria') }}</div>
+    </div>
+    <div class="col-sm-6 mb-2">
+      <label class="form-label" for="n-fecha">Fecha de publicación</label>
+      <input id="n-fecha" type="date" class="form-control" formControlName="fecha" [max]="maxFecha"
+             [class.is-invalid]="error('fecha')" aria-describedby="n-fecha-error" />
+      <div class="invalid-feedback" id="n-fecha-error" aria-live="polite">{{ error('fecha') }}</div>
+    </div>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label" for="n-autor">Autor</label>
+    <input id="n-autor" class="form-control" formControlName="autor" maxlength="60"
+           [class.is-invalid]="error('autor')" aria-describedby="n-autor-error" />
+    <div class="invalid-feedback" id="n-autor-error" aria-live="polite">{{ error('autor') }}</div>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label" for="n-resumen">Resumen</label>
+    <textarea id="n-resumen" class="form-control" rows="2" formControlName="resumen" maxlength="260"
+              [class.is-invalid]="error('resumen')" aria-describedby="n-resumen-error"></textarea>
+    <div class="invalid-feedback" id="n-resumen-error" aria-live="polite">{{ error('resumen') }}</div>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label" for="n-contenido">Contenido (un párrafo por línea)</label>
+    <textarea id="n-contenido" class="form-control" rows="4" formControlName="contenido"
+              [class.is-invalid]="error('contenido')" aria-describedby="n-contenido-error"></textarea>
+    <div class="invalid-feedback" id="n-contenido-error" aria-live="polite">{{ error('contenido') }}</div>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label" for="n-imagen">Imagen</label>
+    <select id="n-imagen" class="form-select" formControlName="imagen">
+      @for (img of imagenes; track img.ruta) {
+        <option [value]="img.ruta">{{ img.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="modal-actions">
+    <button type="button" class="btn-nexo btn-outline" (click)="cancelado.emit()">Cancelar</button>
+    <button type="submit" class="btn-nexo">{{ noticia() ? 'Guardar cambios' : 'Publicar' }}</button>
+  </div>
+</form>

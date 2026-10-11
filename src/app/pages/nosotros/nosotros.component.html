@@ -1,0 +1,25 @@
+<div class="container layout">
+  <div class="page-head"><h1>Nosotros</h1></div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <h2 class="section-heading">Quiénes somos</h2>
+      <p>NEXO 360° es un medio digital de crónicas sobre educación, tecnología, turismo y comercio. Nació como proyecto académico del módulo de Desarrollo de Front-end del Politécnico Grancolombiano, con el objetivo de practicar el diseño y la construcción de una aplicación web completa.</p>
+      <p>Nuestra propuesta es sencilla: reunir en un solo lugar contenidos útiles, con un diseño claro y moderno, y dar al lector herramientas para interactuar con ellos.</p>
+      <h2 class="section-heading">Nuestros valores</h2>
+      <div class="row g-3">
+        @for (v of valores; track v.titulo) {
+          <div class="col-md-4"><div class="info-card"><h3>{{ v.titulo }}</h3><p>{{ v.texto }}</p></div></div>
+        }
+      </div>
+      <p class="mt-4"><a class="btn-nexo" routerLink="/contacto">Escríbenos</a></p>
+    </div>
+    <aside class="col-lg-5">
+      <h2 class="side-title">Tecnologías del proyecto</h2>
+      <ul class="tech-list">
+        @for (t of tecnologias; track t.nombre) {
+          <li><strong>{{ t.nombre }}</strong><span>{{ t.uso }}</span></li>
+        }
+      </ul>
+    </aside>
+  </div>
+</div>

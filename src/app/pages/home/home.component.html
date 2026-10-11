@@ -1,0 +1,126 @@
+<!-- Sección de bienvenida con llamados a la acción (CTA) -->
+<section class="welcome" aria-labelledby="t-bienvenida">
+  <div class="container">
+    <p class="welcome-kicker">Bienvenido a NEXO 360°</p>
+    <h1 id="t-bienvenida">Informarte bien es el primer paso para decidir mejor</h1>
+    <p class="welcome-text">Explora crónicas de educación, tecnología, turismo y comercio, guarda tus favoritas y participa con tus propias noticias.</p>
+    <div class="welcome-actions">
+      <a class="btn-nexo btn-light" routerLink="/noticias">Explorar noticias</a>
+      <a class="btn-nexo btn-ghost" routerLink="/favoritos">Ver mis favoritos</a>
+      <a class="btn-nexo btn-ghost" routerLink="/contacto">Contactar</a>
+    </div>
+  </div>
+</section>
+
+<div class="container layout">
+  @if (noticias.cargando()) {
+    <p class="empty" role="status">Cargando noticias…</p>
+  } @else if (noticias.error()) {
+    <p class="empty" role="alert">{{ noticias.error() }}</p>
+  } @else {
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <!-- Noticia destacada: @if evita errores si todavía no hay datos -->
+        @if (noticias.destacada(); as d) {
+          <section aria-label="Noticia destacada">
+            <a class="hero-img" [routerLink]="['/noticia', d.id]">
+              @if (d.imagen) { <img [src]="d.imagen" [alt]="d.alt" /> }
+            </a>
+            <div class="hero-top">
+              <span class="tag" [class]="'tag-' + categorias[d.categoria].color">{{ categorias[d.categoria].nombre }}</span>
+              <span class="hero-kicker">Edición destacada</span>
+            </div>
+            <h2 class="hero-title"><a [routerLink]="['/noticia', d.id]">{{ d.titulo }}</a></h2>
+            <p class="hero-text">{{ d.resumen }}</p>
+            <div class="hero-meta">
+              <span class="avatar" [class]="'avatar-' + categorias[d.categoria].color" aria-hidden="true">{{ d.autor.nombre | iniciales }}</span>
+              <span class="author">{{ d.autor.nombre }}</span>
+              <span class="dot">•</span>
+              <time [attr.datetime]="d.fecha">{{ d.fecha | date: 'd \'de\' MMMM \'de\' y' }}</time>
+              <span class="saved ms-auto"><app-icono nombre="corazon" [tamano]="18" /> {{ d.vistas }} vistas</span>
+            </div>
+          </section>
+        }
+
+        <div class="section-rule"></div>
+        <h2 class="section-heading">Últimas noticias</h2>
+        <section class="row g-3" aria-label="Últimas noticias">
+          <!-- @for recorre la lista; `track` ayuda a Angular a reutilizar los elementos del DOM -->
+          @for (n of noticias.ultimas(); track n.id) {
+            <div class="col-md-6"><app-noticia-card [noticia]="n" /></div>
+          }
+        </section>
+        <p class="mt-3"><a class="btn-nexo btn-outline" routerLink="/noticias">Ver todas las noticias →</a></p>
+      </div>
+
+      <aside class="col-lg-4 side-col" aria-label="Barra lateral">
+        <h2 class="side-title">Tendencias</h2>
+        <ol class="trend-list">
+          @for (n of noticias.tendencias(); track n.id; let i = $index) {
+            <li class="trend" [class]="'trend-' + categorias[n.categoria].color">
+              <span class="trend-num">0{{ i + 1 }}</span>
+              <div>
+                <span class="trend-cat">{{ categorias[n.categoria].nombre }}</span>
+                <a [routerLink]="['/noticia', n.id]">{{ n.titulo }}</a>
+              </div>
+            </li>
+          }
+        </ol>
+
+        <section class="box-news" aria-labelledby="t-boletin">
+          <h3 id="t-boletin">Boletín diario NEXO 360°</h3>
+          <p>Reciba el mejor periodismo independiente directo en su correo cada mañana. Curaduría exclusiva sin costo.</p>
+          <form (submit)="suscribir($event)" novalidate>
+            <label class="visually-hidden" for="correo-boletin">Correo electrónico</label>
+            <!-- [formControl]: enlaza el campo con el FormControl de la clase -->
+            <input id="correo-boletin" type="email" placeholder="correo@ejemplo.com" autocomplete="email"
+                   [formControl]="correoBoletin" [class.is-invalid]="errorBoletin()" aria-describedby="correo-boletin-error" />
+            <div class="invalid-feedback" id="correo-boletin-error" aria-live="polite">{{ errorBoletin() }}</div>
+            <button class="btn-nexo" type="submit">Suscribirme ahora</button>
+          </form>
+        </section>
+
+        <section class="box-sponsor" aria-label="Contenido patrocinado">
+          <small>PATROCINADO</small>
+          <h3>Viaja de forma consciente</h3>
+          <p>Conoce las ecovillas certificadas en el sur del país. Descuentos exclusivos para suscriptores de NEXO 360°.</p>
+        </section>
+      </aside>
+    </div>
+
+    <!-- Sección informativa -->
+    <section class="info-band" aria-labelledby="t-porque">
+      <h2 id="t-porque" class="section-heading">¿Por qué NEXO 360°?</h2>
+      <div class="row g-3">
+        @for (b of beneficios; track b.titulo) {
+          <div class="col-md-4">
+            <div class="info-card"><h3>{{ b.titulo }}</h3><p>{{ b.texto }}</p></div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Testimonios (ejemplos ficticios) -->
+    <section class="info-band" aria-labelledby="t-testimonios">
+      <h2 id="t-testimonios" class="section-heading">Lo que dicen nuestros lectores</h2>
+      <div class="row g-3">
+        @for (t of testimonios; track t.nombre) {
+          <div class="col-md-4">
+            <figure class="testimonio">
+              <blockquote>“{{ t.texto }}”</blockquote>
+              <figcaption><span class="avatar avatar-edu" aria-hidden="true">{{ t.nombre | iniciales }}</span>
+                <span><strong>{{ t.nombre }}</strong><br /><small>{{ t.rol }}</small></span></figcaption>
+            </figure>
+          </div>
+        }
+      </div>
+      <p class="nota-ficticia">Testimonios de ejemplo con fines académicos.</p>
+    </section>
+
+    <section class="cta-final">
+      <h2>¿Tienes una historia para contar?</h2>
+      <p>Escríbenos y propón tu cobertura o colaboración con la redacción.</p>
+      <a class="btn-nexo btn-light" routerLink="/contacto">Contactar a la redacción</a>
+    </section>
+  }
+</div>

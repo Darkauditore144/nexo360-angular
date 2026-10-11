@@ -1,0 +1,151 @@
+{
+  "version": "1.0",
+  "medio": "NEXO 360°",
+  "noticias": [
+    {
+      "id": 1,
+      "titulo": "La revolución del aula abierta: cómo los espacios biofílicos están redefiniendo el aprendizaje en el Cono Sur",
+      "resumen": "Nuevas corrientes arquitectónicas promueven escuelas diseñadas para integrarse activamente con la naturaleza. Estudios demuestran que la luz solar y la ventilación natural reducen el estrés estudiantil y aumentan el rendimiento académico en más de un 20 %.",
+      "categoria": "educacion",
+      "autor": { "nombre": "Isabel Ardila", "cargo": "Editora de Educación" },
+      "fecha": "2026-06-25",
+      "lectura": 6,
+      "vistas": 1840,
+      "destacada": true,
+      "imagen": "img/edu-aula-abierta.jpg",
+      "alt": "Vista aérea de un campus educativo con edificios circulares cubiertos de vegetación",
+      "contenido": [
+        { "tipo": "p", "texto": "Las escuelas del futuro ya no se imaginan como cajas de concreto con pasillos interminables. En el Cono Sur, un grupo de proyectos piloto está probando aulas abiertas que se integran con jardines, patios y corredores verdes." },
+        { "tipo": "p", "texto": "Los estudios preliminares indican que la exposición a la luz solar y la ventilación natural reducen el estrés estudiantil y mejoran la concentración, con aumentos de rendimiento académico superiores al 20 % en las instituciones evaluadas." },
+        { "tipo": "cita", "texto": "Un aula que respira es un aula que enseña mejor: el espacio también es un docente.", "fuente": "Equipo de arquitectura educativa" },
+        { "tipo": "h2", "texto": "Qué hace diferente a un espacio biofílico" },
+        { "tipo": "p", "texto": "El diseño biofílico incorpora vegetación, agua, materiales naturales y vistas abiertas. Además de su efecto estético, reduce el consumo energético del edificio y crea comunidades escolares más cohesionadas." }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Computación cuántica local se acerca con el nuevo laboratorio nacional",
+      "resumen": "Científicos locales logran estabilizar el primer qubit superconductor de la región, abriendo camino a simulaciones climáticas avanzadas.",
+      "categoria": "tecnologia",
+      "autor": { "nombre": "Mateo Silva", "cargo": "Reportero de Ciencia y Tecnología" },
+      "fecha": "2026-06-26",
+      "lectura": 5,
+      "vistas": 1520,
+      "destacada": false,
+      "imagen": "img/tec-cuantica.jpg",
+      "alt": "Procesador cuántico iluminado en tonos violeta dentro de un laboratorio",
+      "contenido": [
+        { "tipo": "p", "texto": "El nuevo laboratorio nacional reunió a tres universidades y dos centros de investigación para estabilizar el primer qubit superconductor desarrollado en la región." },
+        { "tipo": "p", "texto": "El logro abre la puerta a simulaciones climáticas avanzadas y a la optimización de rutas de transporte, dos áreas en las que la computación clásica enfrenta límites de escala." },
+        { "tipo": "h2", "texto": "Próximos pasos" },
+        { "tipo": "p", "texto": "El equipo planea ampliar el procesador a ocho qubits durante el próximo año y abrir convocatorias para que estudiantes de posgrado utilicen la infraestructura." }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Santuarios de la biosfera: 5 destinos del turismo regenerativo este invierno",
+      "resumen": "Experiencias inmersivas que invitan a los viajeros a reforestar bosques nativos mientras disfrutan de paisajes de ensueño.",
+      "categoria": "turismo",
+      "autor": { "nombre": "Camila Vargas", "cargo": "Reportera de Medio Ambiente y Rutas" },
+      "fecha": "2026-06-26",
+      "lectura": 4,
+      "vistas": 960,
+      "destacada": false,
+      "imagen": "img/tur-santuarios.jpg",
+      "alt": "Lago de aguas turquesa con montañas nevadas reflejadas",
+      "contenido": [
+        { "tipo": "p", "texto": "El turismo regenerativo propone que el viajero deje el destino mejor de como lo encontró. Cinco reservas de la biosfera ofrecen programas de reforestación con guías locales." },
+        { "tipo": "p", "texto": "Las jornadas incluyen caminatas interpretativas, siembra de especies nativas y alojamiento en ecoalbergues administrados por comunidades vecinas." }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Cadenas de suministro cortas impulsan el despegue de la economía agraria",
+      "resumen": "Cooperativas de pequeños agricultores reducen intermediarios gracias a plataformas móviles desarrolladas internamente.",
+      "categoria": "comercio",
+      "autor": { "nombre": "Andrés Bello", "cargo": "Editor de Economía y Comercio" },
+      "fecha": "2026-06-25",
+      "lectura": 5,
+      "vistas": 1210,
+      "destacada": false,
+      "imagen": "img/com-cadenas.jpg",
+      "alt": "Mercado campesino con puestos de frutas y verduras frescas",
+      "contenido": [
+        { "tipo": "p", "texto": "Las cadenas de suministro cortas conectan directamente al productor con el consumidor. Al eliminar intermediarios, el agricultor recibe un precio más justo y el comprador accede a alimentos más frescos." },
+        { "tipo": "p", "texto": "Las cooperativas han desarrollado plataformas móviles propias para gestionar pedidos, rutas de entrega y pagos, con una adopción creciente en municipios intermedios." }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Becas de inserción científica: mil nuevas oportunidades para postgrados",
+      "resumen": "El Ministerio anuncia financiamiento completo para potenciar especialidades en ciencias naturales y recursos hídricos.",
+      "categoria": "educacion",
+      "autor": { "nombre": "Sofía Prado", "cargo": "Reportera de Educación Superior" },
+      "fecha": "2026-06-24",
+      "lectura": 3,
+      "vistas": 2105,
+      "destacada": false,
+      "imagen": "img/edu-becas.jpg",
+      "alt": "Grupo de estudiantes trabajando juntos en una mesa al aire libre",
+      "contenido": [
+        { "tipo": "p", "texto": "El programa cubrirá matrícula, manutención y movilidad para mil estudiantes de maestría y doctorado en ciencias naturales y gestión de recursos hídricos." },
+        { "tipo": "p", "texto": "Las postulaciones se abrirán en el segundo semestre y priorizarán proyectos con impacto territorial y trabajo conjunto con comunidades locales." }
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Los senderos ocultos de la Patagonia: una guía sustentable para explorar sin dejar huella humana",
+      "resumen": "Estrategias prácticas de turismo regenerativo y los nuevos circuitos de mínimo impacto ambiental habilitados este año.",
+      "categoria": "turismo",
+      "autor": { "nombre": "Camila Vargas", "cargo": "Reportera de Medio Ambiente y Rutas" },
+      "fecha": "2026-06-24",
+      "lectura": 8,
+      "vistas": 1730,
+      "destacada": false,
+      "imagen": "img/tur-patagonia.jpg",
+      "alt": "Excursionista caminando junto a un río con montañas patagónicas al fondo",
+      "contenido": [
+        { "tipo": "p", "texto": "La Patagonia siempre ha sido un imán para exploradores. No obstante, el incremento del flujo de visitantes en la última década ha puesto en jaque la delicada biodiversidad local. Desde la erosión del suelo hasta el alarmante manejo de residuos, los parques nacionales más visitados enfrentan desafíos inéditos para conservar su carácter prístino." },
+        { "tipo": "p", "texto": "Es aquí donde cobra fuerza el paradigma del turismo regenerativo: una filosofía de viaje que postula que el paso de las personas por un ecosistema no solo debe dejar cero impacto, sino que debe contribuir proactivamente a su restauración." },
+        { "tipo": "cita", "texto": "Viajar ya no puede ser solo contemplativo. Hoy, cada paso debe estar comprometido con restaurar el suelo que pisamos y los bosques que nos dan oxígeno.", "fuente": "Corporación de Conservación Patagónica" },
+        { "tipo": "h2", "texto": "Estrategias para un senderismo de mínimo impacto" },
+        { "tipo": "p", "texto": "Para quienes desean adentrarse en los nuevos circuitos habilitados, existen reglas de oro inquebrantables. En primer lugar, la planificación milimétrica: no salirse jamás de las huellas señalizadas. Las plantas alpinas andinas tardan décadas en recuperarse de una sola pisada fuera del sendero oficial. Asimismo, la completa prohibición de fuentes de calor abiertas; los incendios forestales pasados han demostrado la letalidad de fogatas accidentales." },
+        { "tipo": "p", "texto": "Actualmente, proyectos comunitarios ofrecen a los visitantes sumarse a jornadas voluntarias de tres horas para remoción de flora invasora y mantención de canales de escorrentía pluvial, uniendo la aventura con el servicio ecológico práctico." }
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "La computación cuántica local avanza con nuevo simulador nacional de qubits",
+      "resumen": "La física de materiales da un paso histórico en la computación cuántica superconductora nacional.",
+      "categoria": "tecnologia",
+      "autor": { "nombre": "Mateo Silva", "cargo": "Reportero de Ciencia y Tecnología" },
+      "fecha": "2026-06-23",
+      "lectura": 6,
+      "vistas": 1390,
+      "destacada": false,
+      "imagen": "img/tec-simulador.jpg",
+      "alt": "Científicos frente a un simulador cuántico con pantallas holográficas",
+      "contenido": [
+        { "tipo": "p", "texto": "El simulador nacional de qubits permite a los investigadores probar algoritmos cuánticos sin depender de infraestructura extranjera, acelerando la formación de talento en el país." },
+        { "tipo": "p", "texto": "Con acceso remoto para universidades públicas, el proyecto aspira a convertirse en la plataforma de referencia para la docencia en computación cuántica." }
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "La reinvención del mercado minorista local en el ecosistema de distribución justa",
+      "resumen": "Cómo las micro-marcas y cooperativas eliminan intermediarios mediante plataformas móviles transparentes.",
+      "categoria": "comercio",
+      "autor": { "nombre": "Andrés Bello", "cargo": "Editor de Economía y Comercio" },
+      "fecha": "2026-06-20",
+      "lectura": 5,
+      "vistas": 1085,
+      "destacada": false,
+      "imagen": "img/com-mercado.jpg",
+      "alt": "Puesto de mercado con productos orgánicos y comercio justo",
+      "contenido": [
+        { "tipo": "p", "texto": "El comercio minorista local se adapta con modelos híbridos: venta presencial en plazas de mercado y pedidos digitales con trazabilidad del productor." },
+        { "tipo": "p", "texto": "Las micro-marcas destacan que la transparencia en precios y origen fortalece la confianza del consumidor y reduce el desperdicio de alimentos." }
+      ]
+    }
+  ]
+}

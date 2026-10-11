@@ -1,0 +1,32 @@
+<div class="container layout">
+  <div class="page-head">
+    <h1><app-icono nombre="corazon" [tamano]="30" /> Mis Favoritos</h1>
+    <span class="pill-count" aria-live="polite">{{ guardadas().length }} {{ guardadas().length === 1 ? 'artículo guardado' : 'artículos guardados' }}</span>
+  </div>
+
+  <div class="chips" role="group" aria-label="Filtrar favoritos por categoría">
+    <button type="button" [class.active]="categoria() === 'todas'" [attr.aria-pressed]="categoria() === 'todas'" (click)="categoria.set('todas')">Todos</button>
+    @for (c of categorias; track c.id) {
+      <button type="button" [class.active]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id)">{{ c.nombre }}</button>
+    }
+  </div>
+
+  @if (noticias.cargando()) {
+    <p class="empty" role="status">Cargando…</p>
+  } @else if (guardadas().length === 0) {
+    <!-- Estado vacío -->
+    <div class="empty-state">
+      <h2>Aún no tienes favoritos</h2>
+      <p>Toca el corazón de cualquier noticia para guardarla aquí.</p>
+      <a class="btn-nexo" routerLink="/noticias">Explorar noticias</a>
+    </div>
+  } @else {
+    <section class="row g-3" aria-label="Noticias guardadas">
+      @for (n of visibles(); track n.id) {
+        <div class="col-md-6 col-lg-4"><app-noticia-card [noticia]="n" /></div>
+      } @empty {
+        <div class="col-12"><p class="empty">No tienes favoritos en esta categoría.</p></div>
+      }
+    </section>
+  }
+</div>

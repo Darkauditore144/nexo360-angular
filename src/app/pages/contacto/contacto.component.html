@@ -1,0 +1,81 @@
+<div class="container layout">
+  <div class="row gx-lg-5 gy-4">
+    <div class="col-lg-7">
+      <h1 class="mb-2">Contacto de Colaboración</h1>
+      <p class="contact-lead">Escríbenos para propuestas de publicidad, sugerencias de cobertura o colaboraciones académicas y comerciales.</p>
+
+      <form id="form-contacto" [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="nombre">Nombre completo</label>
+          <input id="nombre" class="form-control" type="text" formControlName="nombre" autocomplete="name" placeholder="Ej. Laura Gómez"
+                 [class.is-invalid]="error('nombre')" [attr.aria-invalid]="!!error('nombre')" aria-describedby="nombre-error" />
+          <div class="invalid-feedback" id="nombre-error" aria-live="polite">{{ error('nombre') }}</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="correo">Dirección de correo electrónico</label>
+          <input id="correo" class="form-control" type="email" formControlName="correo" autocomplete="email" placeholder="ejemplo@correo.com"
+                 [class.is-invalid]="error('correo')" [attr.aria-invalid]="!!error('correo')" aria-describedby="correo-error" />
+          <div class="invalid-feedback" id="correo-error" aria-live="polite">{{ error('correo') }}</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="asunto">Asunto</label>
+          <select id="asunto" class="form-select" formControlName="asunto"
+                  [class.is-invalid]="error('asunto')" [attr.aria-invalid]="!!error('asunto')" aria-describedby="asunto-error">
+            <option value="">Selecciona un asunto…</option>
+            @for (a of asuntos; track a) { <option [value]="a">{{ a }}</option> }
+          </select>
+          <div class="invalid-feedback" id="asunto-error" aria-live="polite">{{ error('asunto') }}</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="mensaje">Mensaje</label>
+          <textarea id="mensaje" class="form-control" rows="5" maxlength="600" formControlName="mensaje"
+                    placeholder="Escribe los detalles de tu requerimiento. Nuestro equipo editorial responderá en menos de 24 horas hábiles."
+                    [class.is-invalid]="error('mensaje')" [attr.aria-invalid]="!!error('mensaje')" aria-describedby="mensaje-error"></textarea>
+          <div class="invalid-feedback" id="mensaje-error" aria-live="polite">{{ error('mensaje') }}</div>
+          <div class="char-count">{{ longitudMensaje() }} / 600</div>
+        </div>
+
+        <button class="btn-nexo" type="submit">Enviar mensaje</button>
+      </form>
+
+      <section class="faq" aria-label="Preguntas frecuentes">
+        <h2 class="section-heading">Preguntas frecuentes</h2>
+        @for (q of preguntas; track q.p; let i = $index) {
+          <div class="faq-item" [class.open]="abierta() === i">
+            <h3>
+              <button type="button" [attr.aria-expanded]="abierta() === i" [attr.aria-controls]="'faq-' + i" (click)="alternarPregunta(i)">{{ q.p }}</button>
+            </h3>
+            @if (abierta() === i) { <div class="faq-resp" [id]="'faq-' + i"><p>{{ q.r }}</p></div> }
+          </div>
+        }
+      </section>
+    </div>
+
+    <aside class="col-lg-5 panel-redaccion" aria-label="Datos de la redacción">
+      <img src="img/redaccion.jpg" alt="Ilustración de una máquina de escribir y un periódico sobre un escritorio" />
+      <h2>La Redacción</h2>
+      <ul>
+        <li>📍 Avenida Jiménez #12B – 32, Bogotá D.C.</li>
+        <li>✉️ <a href="mailto:contacto@nexo360.com">contacto&#64;nexo360.com</a></li>
+        <li>☎️ +57 322 365 1278</li>
+      </ul>
+      <p class="small text-uppercase text-muted mb-1">Síguenos en redes</p>
+      <p class="social"><a class="s-tw" href="#" aria-label="Twitter">Twitter</a><a class="s-ig" href="#" aria-label="Instagram">Instagram</a><a class="s-in" href="#" aria-label="LinkedIn">LinkedIn</a></p>
+      <p class="small text-uppercase text-muted mb-1">Ubicación geográfica</p>
+      <div class="map-box">
+        <iframe title="Mapa de la ubicación de la redacción" loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0830%2C4.5900%2C-74.0640%2C4.6050&amp;layer=mapnik"></iframe>
+      </div>
+    </aside>
+  </div>
+</div>
+
+@if (enviadoPor(); as nombre) {
+  <app-modal titulo="Mensaje enviado" (cerrar)="enviadoPor.set(null)">
+    <p>Gracias, <strong>{{ nombre }}</strong>. Recibimos tu mensaje y te responderemos en menos de 24 horas hábiles.</p>
+    <div class="modal-actions"><button type="button" class="btn-nexo" (click)="enviadoPor.set(null)">Aceptar</button></div>
+  </app-modal>
+}

@@ -1,0 +1,50 @@
+<article class="news-card" [attr.data-id]="noticia().id">
+  <a class="card-img" [routerLink]="['/noticia', noticia().id]" tabindex="-1">
+    @if (noticia().imagen) {
+      <img [src]="noticia().imagen" [alt]="noticia().alt || noticia().titulo" loading="lazy" />
+    } @else {
+      <div class="card-ph" [class]="'ph-' + categoria().color" role="img" aria-label="Sin imagen"></div>
+    }
+  </a>
+
+  <div class="card-body">
+    <div class="card-top">
+      <span class="tag" [class]="'tag-' + categoria().color">{{ categoria().nombre }}</span>
+      <button
+        type="button"
+        class="fav-btn"
+        [class.is-active]="esFavorita()"
+        [attr.aria-pressed]="esFavorita()"
+        [attr.aria-label]="esFavorita() ? 'Quitar de favoritos' : 'Guardar en favoritos'"
+        (click)="alternarFavorito()"
+      >
+        <app-icono nombre="corazon" />
+      </button>
+    </div>
+
+    <h3 class="card-title">
+      <a [routerLink]="['/noticia', noticia().id]">{{ noticia().titulo }}</a>
+    </h3>
+    <p class="card-text">{{ noticia().resumen }}</p>
+
+    <div class="card-meta">
+      <span class="avatar" [class]="'avatar-' + categoria().color" aria-hidden="true">{{ noticia().autor.nombre | iniciales }}</span>
+      <span class="author">{{ noticia().autor.nombre }}</span>
+      <time [attr.datetime]="noticia().fecha">{{ noticia().fecha | date: 'd MMM y' }}</time>
+    </div>
+
+    <div class="card-foot">
+      <a class="btn-more" [routerLink]="['/noticia', noticia().id]">Ver más</a>
+      @if (gestion()) {
+        <div class="card-actions">
+          <button type="button" class="icon-btn" (click)="editar.emit(noticia())" [attr.aria-label]="'Editar noticia: ' + noticia().titulo">
+            <app-icono nombre="editar" [tamano]="16" />
+          </button>
+          <button type="button" class="icon-btn js-eliminar" (click)="eliminar.emit(noticia())" [attr.aria-label]="'Eliminar noticia: ' + noticia().titulo">
+            <app-icono nombre="borrar" [tamano]="16" />
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</article>

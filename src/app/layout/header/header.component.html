@@ -1,0 +1,79 @@
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- Franja superior: la fecha se formatea con el pipe `date` en español -->
+<div class="topbar">
+  <div class="container">
+    <span>Bogotá D.C. — {{ hoy | date: 'EEEE, d \'de\' MMMM \'de\' y' }}</span>
+    <span><strong>Edición diaria</strong><span class="sep"></span>Suscripción: activa</span>
+  </div>
+</div>
+
+<!-- Logotipo -->
+<header class="masthead">
+  <a class="brand" routerLink="/" aria-label="NEXO 360°, ir al inicio">NEXO 360°</a>
+  <p class="tagline">CRÓNICAS, TURISMO, COMERCIO Y EL FUTURO DEL CONOCIMIENTO</p>
+</header>
+
+<!-- Navegación principal (5 páginas + detalle) -->
+<nav class="navbar navbar-expand-lg main-nav-wrap" aria-label="Navegación principal">
+  <div class="container">
+    <button class="navbar-toggler" type="button" aria-controls="menu-principal"
+            [attr.aria-expanded]="menuAbierto()" aria-label="Abrir menú" (click)="alternarMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu-principal" [class.show]="menuAbierto()">
+      <ul class="navbar-nav main-nav list-unstyled" (click)="cerrarMenu()">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">INICIO</a></li>
+        <li><a routerLink="/noticias" [queryParams]="{ cat: 'educacion' }" routerLinkActive="active" [routerLinkActiveOptions]="exacto"><span class="dot-cat dot-edu"></span>Educación</a></li>
+        <li><a routerLink="/noticias" [queryParams]="{ cat: 'tecnologia' }" routerLinkActive="active" [routerLinkActiveOptions]="exacto"><span class="dot-cat dot-tec"></span>Tecnología</a></li>
+        <li><a routerLink="/noticias" [queryParams]="{ cat: 'turismo' }" routerLinkActive="active" [routerLinkActiveOptions]="exacto"><span class="dot-cat dot-tur"></span>Turismo</a></li>
+        <li><a routerLink="/noticias" [queryParams]="{ cat: 'comercio' }" routerLinkActive="active" [routerLinkActiveOptions]="exacto"><span class="dot-cat dot-com"></span>Comercio</a></li>
+        <li><a routerLink="/noticias" routerLinkActive="active" [routerLinkActiveOptions]="exacto">Todas</a></li>
+        <li><a routerLink="/nosotros" routerLinkActive="active">Nosotros</a></li>
+      </ul>
+
+      <div class="nav-tools">
+        <!-- [(ngModel)]: enlace bidireccional entre el campo y la signal `busqueda` -->
+        <form class="search-box" role="search" (ngSubmit)="buscar()">
+          <app-icono nombre="buscar" [tamano]="15" />
+          <label class="visually-hidden" for="buscador">Buscar noticia</label>
+          <input id="buscador" name="busqueda" type="search" placeholder="Buscar noticia…" autocomplete="off"
+                 list="sugerencias" [(ngModel)]="busqueda" />
+          <datalist id="sugerencias">
+            @for (n of noticias.noticias(); track n.id) {
+              <option [value]="n.titulo"></option>
+            }
+          </datalist>
+        </form>
+
+        <div class="alertas">
+          <button class="tool-btn" type="button" aria-label="Ver alertas" [attr.aria-expanded]="alertasAbiertas()" (click)="alternarAlertas()">
+            <app-icono nombre="campana" />
+          </button>
+          @if (alertasAbiertas()) {
+            <div class="alertas-panel" role="region" aria-label="Alertas de la redacción">
+              <strong>Lo último publicado</strong>
+              <ul>
+                @for (n of alertas(); track n.id) {
+                  <li><a [routerLink]="['/noticia', n.id]" (click)="alertasAbiertas.set(false)">{{ n.titulo }}</a></li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+
+        <a class="tool-btn" routerLink="/favoritos" aria-label="Mis favoritos" title="Mis favoritos">
+          <app-icono nombre="corazon" />
+          <!-- El contador se actualiza solo: es una signal computed del servicio -->
+          @if (favoritos.contador() > 0) {
+            <span class="badge-fav" [attr.aria-label]="favoritos.contador() + ' artículos guardados'">{{ favoritos.contador() }}</span>
+          }
+        </a>
+        <a class="tool-btn" routerLink="/contacto" aria-label="Contacto" title="Contacto">
+          <app-icono nombre="usuario" />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
