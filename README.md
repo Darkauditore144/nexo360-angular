@@ -4,8 +4,8 @@ Plataforma web de noticias de **educación, tecnología, turismo y comercio**, d
 *Desarrollo de Front-end* (Politécnico Grancolombiano). Es la evolución del prototipo de la Entrega Previa 2 (HTML + CSS +
 JavaScript + jQuery) a una aplicación de componentes con enlace de datos (*data binding*).
 
-- **Aplicación desplegada:** `https://<usuario>.github.io/nexo360-frontend/`  ← reemplazar con la URL real
-- **Repositorio:** `https://github.com/<usuario>/nexo360-frontend`  ← reemplazar con la URL real
+- **Aplicación desplegada:** `https://darkauditore144.github.io/nexo360-angular/#/`
+- **Repositorio:** `https://github.com/Darkauditore144/nexo360-angular`  ← reemplazar con la URL real
 - **Video explicativo:** `<enlace de YouTube>`  ← reemplazar con el enlace real
 
 ## Funcionalidades
