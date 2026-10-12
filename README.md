@@ -58,4 +58,6 @@ npm run build:pages  # genera dist/nexo360-angular/browser con base-href /nexo36
 - La aplicación usa rutas con `#` (`withHashLocation`) para que recargar la página no produzca error 404 en hostings estáticos.
 
 ## Autor
-Entrega individual — Desarrollo de Front-end. Tutor: John Olarte Ramos.
+Angelo Hernandez
+Front-end
+Tutor: John Olarte Ramos
